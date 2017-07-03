@@ -25,14 +25,26 @@ If the portions are installed in different locations, two different "foo" direct
 
 It is also possible to have the "foo.bar" portion installed in a directory on sys.path , and have the "foo.baz" portion provided in a zip file, also on sys.path . 
 
-#### 举例说明：
+#### 举例：给予拓展的可能性：
 
 ```
-script/public
-    pubaccount
-        net
-            pubaccount_net.py
+script/game
+    new_account
+    	newaccount
+	        newaccount_manage.py
+	        helper.py
+	        facilites.py
+	    newaccount_net.py
     id_authentication
-        net
+        newaccount
             id_net.py
+        id_manage.py
+        id_net.py
+    zmsdk_auth
+    	newaccount
+    		zhanmeng_login.py
+    			def LoginWithZhanMeng
+    	zmsdk_manage.py
 ```
+
+https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
