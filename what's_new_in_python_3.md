@@ -1,50 +1,11 @@
 
 ### 一、使用隐式命名空间组成包结构（PEP 420 -- Implicit Namespace Packages）
+[PEP420][1]
 
-#### 两种形式的包结构：
- - Regular packages
- - Namespace packages
-
-#### Namespace package 创建过程说明：
-
- 1. If `<directory>/foo/__init__.py` is found, a regular package is imported and returned.
- 2. If not, but `<directory>/foo.{py,pyc,so,pyd}` is found, a module is imported and returned. The exact list of extension varies by platform and whether the -O flag is specified. The list here is representative.
- 3. If not, but `<directory>/foo` is found and is a directory, it is recorded and the scan continues with the next directory in the parent path.
- 4. Otherwise the scan continues with the next directory in the parent path.
-
-
-#### Namespace package 最大的特点：
-
-Multiple portions of a namespace package can be installed into the same directory, or into separate directories. For this section, suppose there are two portions which define "foo.bar" and "foo.baz". "foo" itself is a namespace package. 
-
-If these are installed in the same location, a single directory "foo" would be in a directory that is on sys.path . Inside "foo" would be two directories, "bar" and "baz". If "foo.bar" is removed (perhaps by an OS package manager), care must be taken not to remove the "foo/baz" or "foo" directories. Note that in this case "foo" will be a namespace package (because it lacks an `__init__.py` ), even though all of its portions are in the same directory. 
-
-Note that "foo.bar" and "foo.baz" can be installed into the same "foo" directory because they will not have any files in common. 
-
-If the portions are installed in different locations, two different "foo" directories would be in directories that are on sys.path . "foo/bar" would be in one of these sys.path entries, and "foo/baz" would be in the other. Upon removal of "foo.bar", the "foo/bar" and corresponding "foo" directories can be completely removed. But "foo/baz" and its corresponding "foo" directory cannot be removed. 
-
-It is also possible to have the "foo.bar" portion installed in a directory on sys.path , and have the "foo.baz" portion provided in a zip file, also on sys.path . 
-
-#### 举例：给予拓展的可能性：
-
-```
-script/game
-    new_account
-    	newaccount
-	        newaccount_manage.py
-	        helper.py
-	        facilites.py
-	    newaccount_net.py
-    id_authentication
-        newaccount
-            id_net.py
-        id_manage.py
-        id_net.py
-    zmsdk_auth
-    	newaccount
-    		zhanmeng_login.py
-    			def LoginWithZhanMeng
-    	zmsdk_manage.py
-```
-
+### 二、去除unicode字符串换和字节串的隐式转换（PEP 414 -- Explicit Unicode Literal）
+[PEP414][2]
+拓展阅读：
 https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
+
+[1]:./PEP420/PEP420.md
+[2]:./PEP414/PEP414.md
